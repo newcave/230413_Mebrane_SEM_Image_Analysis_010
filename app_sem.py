@@ -40,7 +40,7 @@ def main():
             st.warning("Please upload all 5 images or use the default images.")
             return
         
-    st.sidebar.header("Technical Consulting Report (Excerpt)")
+    st.sidebar.header("기술 지원 보고서 (일부만 발췌)")
     show_report = st.sidebar.checkbox("Show Report")
 
     if show_report:
