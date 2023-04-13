@@ -55,7 +55,7 @@ def process_images(img1, img2, img3, img4, img5, threshold):
     img5 = img5.resize((width, height))
 
     # Print the threshold value
-    st.write(f"THRESHOLD OF PORE REPRESENTATION: {threshold}")
+#    st.write(f"THRESHOLD OF PORE REPRESENTATION: {threshold}")
 
     # Calculate the number of black pixels in each image based on the threshold
     black_pixels1 = sum([1 for pixel in img1.getdata() if sum(pixel)/3 <= threshold])
@@ -106,9 +106,9 @@ def plot_images(img_list, black_ratios, black_ratio_diffs, threshold):
     fig, ax = plt.subplots()
     ax.bar(range(1, 6), black_ratios)
     ax.set_xticks(range(1, 6))
-    ax.set_xticklabels([f"막 SEM image {i+1}" for i in range(5)])
+    ax.set_xticklabels([f"Mebrane SEM image {i+1}" for i in range(5)])
     ax.set_ylabel('Pore Ratio Analyzed(%)')
-    ax.set_title('막여과 공극의 비율 분석')
+    ax.set_title('Pore Ratio Analyzed(%)')
 
     # Display the bar chart in Streamlit
     st.pyplot(fig)
@@ -118,8 +118,8 @@ def plot_images(img_list, black_ratios, black_ratio_diffs, threshold):
     ax.plot(range(2, 6), black_ratio_diffs, marker='o')
     ax.set_xticks(range(2, 6))
     ax.set_xticklabels([f"Image {i+1}" for i in range(1, 5)])
-    ax.set_ylabel('막여과 오염에 따른 공극률의 감소(%)')
-    ax.set_title('막여과 오염에 따른 공극률의 감소(%)')
+    ax.set_ylabel('Polluted Ratio(%)')
+    ax.set_title('Pore Reduction Ratio by Mem Deterioation(%)')
 
     # Display the line graph in Streamlit
     st.pyplot(fig)
