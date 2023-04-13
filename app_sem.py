@@ -85,10 +85,6 @@ def process_images(img1, img2, img3, img4, img5, threshold):
     black_ratio_diffs = [black_ratio_diff1, black_ratio_diff2, black_ratio_diff3, black_ratio_diff4]
 
 
-
-
-
-
 def plot_images(img_list, black_ratios, black_ratio_diffs, threshold):
     # Plot the images in a row
     fig, ax = plt.subplots(1, 5, figsize=(20, 4))
@@ -96,6 +92,9 @@ def plot_images(img_list, black_ratios, black_ratio_diffs, threshold):
         ax[i].imshow(img)
         ax[i].axis('off')
         ax[i].set_title(f"Image {i+1}")
+    
+    # Display the image grid in Streamlit
+    st.pyplot(fig)
 
     # Draw bar charts to show the pore ratio differences for each image
     fig, ax = plt.subplots()
@@ -105,6 +104,9 @@ def plot_images(img_list, black_ratios, black_ratio_diffs, threshold):
     ax.set_ylabel('Pore Ratio')
     ax.set_title('Pore Ratio by Image')
 
+    # Display the bar chart in Streamlit
+    st.pyplot(fig)
+
     # Plot line graphs to display the change in pore reduction for each image
     fig, ax = plt.subplots()
     ax.plot(range(2, 6), black_ratio_diffs, marker='o')
@@ -113,8 +115,8 @@ def plot_images(img_list, black_ratios, black_ratio_diffs, threshold):
     ax.set_ylabel('Pore Reduction Ratio')
     ax.set_title('Pore Reduction Ratio by Image')
 
-    # Show the plots
-    plt.show()
+    # Display the line graph in Streamlit
+    st.pyplot(fig)
 
 
 if __name__ == "__main__":
