@@ -7,6 +7,9 @@ def main():
     st.title("K-water막여과정수장의 Membrane의 공극 열화를 이미지로 분석")
 
 # Add a slider for the threshold value
+
+    st.sidebar.image("AILAB-LOGO-WhiteBG.png")
+    
     st.sidebar.header("Threshold")
     threshold = st.sidebar.slider("Set Threshold:", min_value=0, max_value=255, value=128, step=1)
     
@@ -36,7 +39,14 @@ def main():
         else:
             st.warning("Please upload all 5 images or use the default images.")
             return
+        
+    st.sidebar.header("Technical Consulting Report (Excerpt)")
+    show_report = st.sidebar.checkbox("Show Report")
 
+    if show_report:
+        st.image("tech_consulting_report.jpg")
+        
+        
     process_images(img1, img2, img3, img4, img5, threshold)    
         
     img_list, black_ratios, black_ratio_diffs = process_images(img1, img2, img3, img4, img5, threshold)
