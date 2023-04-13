@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 def main():
-    st.title("Membrane Pore Reduction Analysis")
+    st.title("Membrane의 공극 열화를 이미지로 분석")
 
 # Add a slider for the threshold value
     st.sidebar.header("Threshold")
@@ -36,13 +36,15 @@ def main():
         else:
             st.warning("Please upload all 5 images or use the default images.")
             return
+
+    process_images(img1, img2, img3, img4, img5, threshold)    
         
     img_list, black_ratios, black_ratio_diffs = process_images(img1, img2, img3, img4, img5, threshold)
+
     plot_images(img_list, black_ratios, black_ratio_diffs, threshold)     
         
-    process_images(img1, img2, img3, img4, img5, threshold)
-# Call the plot_images() function to visualize the images and their pore ratios
-    plot_images(img_list, black_ratios, black_ratio_diffs, threshold)          
+
+   
         
 def process_images(img1, img2, img3, img4, img5, threshold):
     # Resize all images to match the size of img1
