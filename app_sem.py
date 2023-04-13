@@ -8,7 +8,7 @@ def main():
 
 # Add a slider for the threshold value
 
-#    st.sidebar.image("AILAB-LOGO-WhiteBG.png")
+    st.sidebar.image("AlLAB-LOGO-WhiteBG.png")
     
     st.sidebar.header("Threshold")
     threshold = st.sidebar.slider("Set Threshold:", min_value=0, max_value=255, value=128, step=1)
