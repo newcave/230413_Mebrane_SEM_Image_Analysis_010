@@ -37,29 +37,69 @@ def process_images(img1, img2, img3, img4, img5, threshold):
     st.write(f"THRESHOLD OF PORE REPRESENTATION: {threshold}")
 
     # Calculate the number of black pixels in each image based on the threshold
-    # ...
+    black_pixels1 = sum([1 for pixel in img1.getdata() if sum(pixel)/3 <= threshold])
+    black_pixels2 = sum([1 for pixel in img2.getdata() if sum(pixel)/3 <= threshold])
+    black_pixels3 = sum([1 for pixel in img3.getdata() if sum(pixel)/3 <= threshold])
+    black_pixels4 = sum([1 for pixel in img4.getdata() if sum(pixel)/3 <= threshold])
+    black_pixels5 = sum([1 for pixel in img5.getdata() if sum(pixel)/3 <= threshold])
 
     # Calculate the black pixel ratio for each image
-    # ...
+    count1 = img1.size[0] * img1.size[1]
+    count2 = img2.size[0] * img2.size[1]
+    count3 = img3.size[0] * img3.size[1]
+    count4 = img4.size[0] * img4.size[1]
+    count5 = img5.size[0] * img5.size[1]
+
+    black_ratio1 = black_pixels1 / count1
+    black_ratio2 = black_pixels2 / count2
+    black_ratio3 = black_pixels3 / count3
+    black_ratio4 = black_pixels4 / count4
+    black_ratio5 = black_pixels5 / count5
 
     # Compute the differences in black pixel ratios between the original and processed images
-    # ...
+    black_ratio_diff1 = (black_ratio1 - black_ratio2) / black_ratio1
+    black_ratio_diff2 = (black_ratio1 - black_ratio3) / black_ratio1
+    black_ratio_diff3 = (black_ratio1 - black_ratio4) / black_ratio1
+    black_ratio_diff4 = (black_ratio1 - black_ratio5) / black_ratio1
+
+    # Prepare img_list, black_ratios and black_ratio_diffs for plot_images()
+    img_list = [img1, img2, img3, img4, img5]
+    black_ratios = [black_ratio1, black_ratio2, black_ratio3, black_ratio4, black_ratio5]
+    black_ratio_diffs = [black_ratio_diff1, black_ratio_diff2, black_ratio_diff3, black_ratio_diff4]
 
     # Call the plot_images() function to visualize the images and their pore ratios
     plot_images(img_list, black_ratios, black_ratio_diffs, threshold)
 
+
+import matplotlib.pyplot as plt
+
 def plot_images(img_list, black_ratios, black_ratio_diffs, threshold):
     # Plot the images in a row
-    # ...
+    fig, ax = plt.subplots(1, 5, figsize=(20, 4))
+    for i, img in enumerate(img_list):
+        ax[i].imshow(img)
+        ax[i].axis('off')
+        ax[i].set_title(f"Image {i+1}")
 
     # Draw bar charts to show the pore ratio differences for each image
-    # ...
+    fig, ax = plt.subplots()
+    ax.bar(range(1, 6), black_ratios)
+    ax.set_xticks(range(1, 6))
+    ax.set_xticklabels([f"Image {i+1}" for i in range(5)])
+    ax.set_ylabel('Pore Ratio')
+    ax.set_title('Pore Ratio by Image')
 
     # Plot line graphs to display the change in pore reduction for each image
-    # ...
+    fig, ax = plt.subplots()
+    ax.plot(range(2, 6), black_ratio_diffs, marker='o')
+    ax.set_xticks(range(2, 6))
+    ax.set_xticklabels([f"Image {i+1}" for i in range(1, 5)])
+    ax.set_ylabel('Pore Reduction Ratio')
+    ax.set_title('Pore Reduction Ratio by Image')
 
     # Show the plots
     plt.show()
+
 
 if __name__ == "__main__":
     main()
