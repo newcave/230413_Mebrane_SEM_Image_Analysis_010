@@ -39,7 +39,8 @@ def main():
         
         
     process_images(img1, img2, img3, img4, img5, threshold)
-            
+# Call the plot_images() function to visualize the images and their pore ratios
+    plot_images(img_list, black_ratios, black_ratio_diffs, threshold)          
         
 def process_images(img1, img2, img3, img4, img5, threshold):
     # Resize all images to match the size of img1
@@ -83,8 +84,7 @@ def process_images(img1, img2, img3, img4, img5, threshold):
     black_ratios = [black_ratio1, black_ratio2, black_ratio3, black_ratio4, black_ratio5]
     black_ratio_diffs = [black_ratio_diff1, black_ratio_diff2, black_ratio_diff3, black_ratio_diff4]
 
-    # Call the plot_images() function to visualize the images and their pore ratios
-    plot_images(img_list, black_ratios, black_ratio_diffs, threshold)
+
 
 
 
