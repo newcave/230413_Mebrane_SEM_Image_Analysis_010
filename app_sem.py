@@ -15,7 +15,7 @@ def main():
     
     
     st.sidebar.header("Input Images")
-    use_default_images = st.sidebar.checkbox("Use Default Images")
+    use_default_images = st.sidebar.checkbox("Use Default Images", value=True)
 
     if use_default_images:
         img1 = Image.open("img_org.png")
