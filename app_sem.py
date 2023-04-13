@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 def main():
-    st.title("Membrane의 공극 열화를 이미지로 분석")
+    st.title("K-water막여과정수장의 Membrane의 공극 열화를 이미지로 분석")
 
 # Add a slider for the threshold value
     st.sidebar.header("Threshold")
@@ -106,9 +106,9 @@ def plot_images(img_list, black_ratios, black_ratio_diffs, threshold):
     fig, ax = plt.subplots()
     ax.bar(range(1, 6), black_ratios)
     ax.set_xticks(range(1, 6))
-    ax.set_xticklabels([f"Image {i+1}" for i in range(5)])
-    ax.set_ylabel('Pore Ratio')
-    ax.set_title('Pore Ratio by Image')
+    ax.set_xticklabels([f"막 SEM image {i+1}" for i in range(5)])
+    ax.set_ylabel('Pore Ratio Analyzed(%)')
+    ax.set_title('막여과 공극의 비율 분석')
 
     # Display the bar chart in Streamlit
     st.pyplot(fig)
@@ -118,8 +118,8 @@ def plot_images(img_list, black_ratios, black_ratio_diffs, threshold):
     ax.plot(range(2, 6), black_ratio_diffs, marker='o')
     ax.set_xticks(range(2, 6))
     ax.set_xticklabels([f"Image {i+1}" for i in range(1, 5)])
-    ax.set_ylabel('Pore Reduction Ratio')
-    ax.set_title('Pore Reduction Ratio by Image')
+    ax.set_ylabel('막여과 오염에 따른 공극률의 감소(%)')
+    ax.set_title('막여과 오염에 따른 공극률의 감소(%)')
 
     # Display the line graph in Streamlit
     st.pyplot(fig)
