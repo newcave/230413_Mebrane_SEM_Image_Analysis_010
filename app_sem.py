@@ -39,8 +39,7 @@ def main():
         
         
     process_images(img1, img2, img3, img4, img5, threshold)
-        
-    plot_images(img_list, black_ratios, black_ratio_diffs, threshold):       
+            
         
 def process_images(img1, img2, img3, img4, img5, threshold):
     # Resize all images to match the size of img1
