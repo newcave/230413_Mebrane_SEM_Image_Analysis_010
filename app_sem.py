@@ -7,24 +7,31 @@ def main():
     st.title("Membrane Pore Reduction Analysis")
 
     st.sidebar.header("Input Images")
-    img1 = st.sidebar.file_uploader("Upload Image 1:", type=["png", "jpg", "jpeg"])
-    img2 = st.sidebar.file_uploader("Upload Image 2:", type=["png", "jpg", "jpeg"])
-    img3 = st.sidebar.file_uploader("Upload Image 3:", type=["png", "jpg", "jpeg"])
-    img4 = st.sidebar.file_uploader("Upload Image 4:", type=["png", "jpg", "jpeg"])
-    img5 = st.sidebar.file_uploader("Upload Image 5:", type=["png", "jpg", "jpeg"])
+    use_default_images = st.sidebar.checkbox("Use Default Images")
 
-    st.sidebar.header("Threshold")
-    threshold = st.sidebar.slider("Select a threshold value:", min_value=0, max_value=255, value=50, step=1)
+    if use_default_images:
+        img1 = Image.open("img_org.png")
+        img2 = Image.open("image01.png")
+        img3 = Image.open("image02.png")
+        img4 = Image.open("image03.png")
+        img5 = Image.open("new_mem_rev.png")
+    else:
+        img1 = st.sidebar.file_uploader("Upload Image 1:", type=["png", "jpg", "jpeg"])
+        img2 = st.sidebar.file_uploader("Upload Image 2:", type=["png", "jpg", "jpeg"])
+        img3 = st.sidebar.file_uploader("Upload Image 3:", type=["png", "jpg", "jpeg"])
+        img4 = st.sidebar.file_uploader("Upload Image 4:", type=["png", "jpg", "jpeg"])
+        img5 = st.sidebar.file_uploader("Upload Image 5:", type=["png", "jpg", "jpeg"])
 
-    if img1 and img2 and img3 and img4 and img5:
-        img1 = Image.open(img1)
-        img2 = Image.open(img2)
-        img3 = Image.open(img3)
-        img4 = Image.open(img4)
-        img5 = Image.open(img5)
+        if img1 and img2 and img3 and img4 and img5:
+            img1 = Image.open(img1)
+            img2 = Image.open(img2)
+            img3 = Image.open(img3)
+            img4 = Image.open(img4)
+            img5 = Image.open(img5)
+        else:
+            st.warning("Please upload all 5 images or use the default images.")
+            return
         
-        process_images(img1, img2, img3, img4, img5, threshold)
-
 def process_images(img1, img2, img3, img4, img5, threshold):
     # Resize all images to match the size of img1
     width, height = img1.size
