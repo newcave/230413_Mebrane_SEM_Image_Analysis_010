@@ -6,6 +6,11 @@ import numpy as np
 def main():
     st.title("Membrane Pore Reduction Analysis")
 
+# Add a slider for the threshold value
+    st.sidebar.header("Threshold")
+    threshold = st.sidebar.slider("Set Threshold:", min_value=0, max_value=255, value=128, step=1)
+    
+    
     st.sidebar.header("Input Images")
     use_default_images = st.sidebar.checkbox("Use Default Images")
 
@@ -31,6 +36,11 @@ def main():
         else:
             st.warning("Please upload all 5 images or use the default images.")
             return
+        
+        
+    process_images(img1, img2, img3, img4, img5, threshold)
+        
+    plot_images(img_list, black_ratios, black_ratio_diffs, threshold):       
         
 def process_images(img1, img2, img3, img4, img5, threshold):
     # Resize all images to match the size of img1
@@ -78,7 +88,7 @@ def process_images(img1, img2, img3, img4, img5, threshold):
     plot_images(img_list, black_ratios, black_ratio_diffs, threshold)
 
 
-import matplotlib.pyplot as plt
+
 
 def plot_images(img_list, black_ratios, black_ratio_diffs, threshold):
     # Plot the images in a row
